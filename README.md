@@ -4,7 +4,7 @@ Laboratorio 1 OpenGL
 
 SI NO SE DISTINGUE EL SHADER MOVER LA LUZ Y CAMBIAR A FILLED MODE
 
-Controles: 
+##Controles: 
 
 ←↑↓→ - mover la luz (flechas)
 
