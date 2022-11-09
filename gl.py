@@ -171,9 +171,9 @@ class Renderer(object):
         self.scene = []
         self.active_shader = None
 
-        self.pointLight = glm.vec3(0,0,0)
+        self.pointLight = glm.vec3(0,0,0.5)
 
-        #self.time = 0
+        self.time = 0
         self.value = 0
         
 
@@ -257,7 +257,8 @@ class Renderer(object):
             glUniform1i(glGetUniformLocation(self.active_shader, "texture0"), 0)
 
             glUniform3fv(glGetUniformLocation(self.active_shader, "pointLight"), 1, glm.value_ptr(self.pointLight))
-            #glUniform1f(glGetUniformLocation(self.active_shader, "time"), self.time)
+            glUniform1f(glGetUniformLocation(self.active_shader, "value"), self.value)
+            glUniform1f(glGetUniformLocation(self.active_shader, "time"), self.time)
 
 
         for obj in self.scene:
