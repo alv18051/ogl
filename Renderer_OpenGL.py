@@ -34,24 +34,55 @@ rend = Renderer(screen)
 rend.setShaders(vertex_shader, fragment_shader)#vertex_shader, fragment_shader, shaderSi
 
 face = Model("MouseS.obj", "Mouse_D.bmp")
+face.position.z = -5
+anime = Model("anime.obj", "animegirl.png")
+anime.position.z = -5
+sword = Model("sword.obj", "sword.png")
+sword.position.z = -5
+gun = Model("gun.obj", "gun.bmp")
+gun.position.z = -5
+puppy = Model("Puppy.obj","dog.bmp")
+puppy.position.z = -5
+
+
+rend.scene.append(face)
 
 face.position.z -= 10
 face.scale.x = 5
 face.scale.y = 5
 face.scale.z = 5
+
+anime.position.y -= 1
+anime.scale.x = 0.8
+anime.scale.y = 0.8
+anime.scale.z = 0.8
+
+puppy.position.y -= 3
+puppy.scale.x = 0.2
+puppy.scale.y = 0.2
+puppy.scale.z = 0.2
+
+sword.position.y -= 1
+sword.rotation.y = 90
+sword.rotation.x = 90
+sword.scale.x = 0.3
+sword.scale.y = 0.3
+sword.scale.z = 0.3
+
+gun.scale.x = 1
+gun.scale.y = 1
+gun.scale.z = 1
+
+backgroundP = pygame.image.load("background.jpg")
+
 limit = 100
-
-
-rend.scene.append( face )
-
 
 isRunning = True
 
 while isRunning:
 
-    
-
     keys = pygame.key.get_pressed()
+    mouse = pygame.mouse.get_pressed()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -96,6 +127,22 @@ while isRunning:
         if limit > 0: 
             rend.camPosition.y -= 10 * deltaTime
             limit -= 5
+    elif event.type == pygame.MOUSEWHEEL:
+        if event.y > 0:
+            if limit <= 300:
+                rend.camPosition.z += 10 * deltaTime
+                limit += 5
+        elif event.y < 0:
+            if limit > 0: 
+                rend.camPosition.z -= 10 * deltaTime
+                limit -= 5
+        
+
+    if pygame.mouse.get_rel()[0] > 0:
+        rend.scene[0].rotation.y += 60 * deltaTime
+    elif pygame.mouse.get_rel()[0] < 0:
+        rend.scene[0].rotation.y -= 60 * deltaTime
+    
     
     elif keys[K_1]:#normal shaders
         rend.setShaders(vertex_shader, fragment_shader)
@@ -105,6 +152,25 @@ while isRunning:
         rend.setShaders(vertex_shader,shader_colored_changing)
     elif keys[K_4]:#night vision shaders
         rend.setShaders(vertex_shader,night_vision)
+
+    #cambio modelos
+    elif keys[K_KP1]:
+        rend.scene[0] = face
+        face.position.z = -5
+    elif keys[K_KP2]:
+        rend.scene[0] = anime
+        anime.position.z = -1
+    elif keys[K_KP3]:
+        rend.scene[0] = puppy
+        puppy.position.z = -20
+    elif keys[K_KP4]:
+        rend.scene[0] = sword
+        sword.position.z = -15
+    elif keys[K_KP5]:
+        rend.scene[0] = gun
+        gun.position.z = -5
+
+
         
 
 
@@ -153,6 +219,7 @@ while isRunning:
     rend.update()
     rend.render()
     screen.blit(textsurface, (50, 50))
+    rend.screen.blit(backgroundP, (0, 0))
     pygame.display.flip()
 
 pygame.quit()
