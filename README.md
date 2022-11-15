@@ -40,4 +40,16 @@ z - rotar camara
 
 x - rotar camara opuesto
 
+Todo lo siguiente es en Numpad:
+
+1 - Modelo ratón 
+
+2 - Modelo cartoon
+
+3 - Modelo perro
+
+4 - Modelo espada
+
+5 - Modelo pistola
+
 esc - salir
