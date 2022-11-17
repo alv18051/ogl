@@ -50,6 +50,10 @@ Todo lo siguiente es en Numpad:
 
 4 - Modelo espada
 
-5 - Modelo pistola
+5 - Modelo 
+
+9 - Stop a la musica
+
+0 - Play a la musica
 
 esc - salir

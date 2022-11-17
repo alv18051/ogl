@@ -148,6 +148,15 @@ while isRunning:
         rend.scene[0].rotation.y += 60 * deltaTime
     elif pygame.mouse.get_rel()[0] < 0:
         rend.scene[0].rotation.y -= 60 * deltaTime
+
+    if pygame.mouse.get_rel()[1] > 0:
+        if limit <= 300:
+            rend.camPosition.y += 10 * deltaTime
+            limit += 5
+    elif pygame.mouse.get_rel()[1] < 0:
+        if limit > 0: 
+            rend.camPosition.y -= 10 * deltaTime
+            limit -= 5
     
     
     elif keys[K_1]:#normal shaders
@@ -175,6 +184,12 @@ while isRunning:
     elif keys[K_KP5]:
         rend.scene[0] = gun
         gun.position.z = -5
+
+    elif keys[K_KP9]:
+        pygame.mixer.music.stop()
+
+    elif keys[K_KP0]:
+        pygame.mixer.music.play(-1)
 
 
         
