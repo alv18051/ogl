@@ -1,7 +1,10 @@
 import pygame
 from pygame.locals import *
+from pygame import *
 
 from shaders import *
+
+
 
 from gl import *
 
@@ -43,6 +46,9 @@ gun = Model("gun.obj", "gun.bmp")
 gun.position.z = -5
 puppy = Model("Puppy.obj","dog.bmp")
 puppy.position.z = -5
+
+pygame.mixer.music.load('music.mp3')
+pygame.mixer.music.play(-1)
 
 
 rend.scene.append(face)
